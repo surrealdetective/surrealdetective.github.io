@@ -2,15 +2,44 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-06-05T10:30:19-04:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
+  <link href="http://surrealdetective.github.io/"/>
+  <updated>2013-06-05T11:11:33-04:00</updated>
+  <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Branch is not an Origin]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/06/05/how-branch-is-not-an-origin/"/>
+    <updated>2013-06-05T10:57:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/06/05/how-branch-is-not-an-origin</id>
+    <content type="html"><![CDATA[<h2>What is a branch?</h2>
+
+
+<p>Your local copy of the repository is the branch. You might often be on your master branch.</p>
+
+
+
+
+<h2>What is an origin?</h2>
+
+
+<p>By convention, this is the name of your remote repository.</p>
+
+
+
+
+<h2>The difference between Branch and Origin</h2>
+
+
+<p>Remotes are the entire repository, which includes all branches. Your master branch is more like a unit of work within the entire project that is the remote.</p>
+
+]]></content>
+  </entry>
   
 </feed>

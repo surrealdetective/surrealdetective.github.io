@@ -16,3 +16,5 @@ group :development do
 end
 
 gem 'sinatra', '~> 1.4.2'
+gem 'redcarpet', '=2.2.2'
+gem 'maruku', '=0.6.1'

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-06-09T16:09:05-04:00</updated>
+  <updated>2013-06-09T17:04:09-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Alex Au]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>

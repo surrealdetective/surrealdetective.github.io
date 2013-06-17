@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-06-16T22:53:44-04:00</updated>
+  <updated>2013-06-17T13:21:55-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -30,7 +30,7 @@
 <li><p>CSS &ndash; “Cascading Style Sheets” work with HTML to adjust the visual design of a website. For example, CSS can tell all paragraphs to appear in 14 point Helvetica font and to start as gray, but to fade to black when a user’s mouse hovers over the text. CSS makes it easier to visually design a site because it separates content from style, allowing for web developers to think about these two topics separately. Furthermore,  web developers can overhaul the style of a site very quickly using CSS &ndash; rather than changing the style of every paragraph in a large website containing thousands of articles, a web developer can change just one document that will then apply that style to all paragraphs of every article.</p></li>
 <li><p>Javascript &ndash; This is the programming language of the internet. It is used to listen for events and change the display on a website based on those events. Javascript is a programming language because developers can use it to instruct computers to make new methods that do entirely new things. By contrast, HTML and CSS are not programming languages because developers describe content with a set vocabulary, which web browsers read and apply a set of fixed methods to achieve their effects.</p></li>
 <li><p>Ruby &ndash; This is the programming language of Ruby on Rails. It is known for being intuitive to write and, when combined with Rails &ndash; to be a fast and effective way to make websites compared with other languages.</p></li>
-<li><p>Rails &ndash; This is an open source web application framework and server, which means that it is a standardized way to create a website. A website has a lot of files that interact with each other, and Rails is a popular way of having those files interact. It’s popular because many of the decisions for how website files interact is defaulted according to a easily-deciphered logic, allowing for developers to focus their mental efforts on adding value.</p></li>
+<li><p>Rails &ndash; This is an open source web application framework and server, which means that it is a standardized way to create a website. A website has a lot of files that interact with each other, and Rails is a popular way of having those files interact. It’s popular because many of the decisions for how website files interact is defaulted according to an easily-deciphered logic, allowing for developers to focus their mental efforts on adding value.</p></li>
 <li><p>The Command Line &ndash; computers can receive instructions through “the command line.” This is the standard way for programmers to interact with computers because many commands can only be issued through the command line.</p></li>
 <li><p>SQL &ndash; “Structured Query Language” is a popular database language. Databases store data in an easily retrievable format. When a website like Facebook displays the status updates of all your friends, it has to query that data before displaying it. Whereas it would take you or me dozens of hours to find that information in a stack of papers, databases are designed to make that process quick and accurate.</p></li>
 <li><p>Testing &ndash; while not technically requiring its own programming language, testing does use a distinct vocabulary and methodology. Because a website has a lot of moving parts, programmers create tests that let them identify which part suddenly breaks down with any change in the code.</p></li>
@@ -75,6 +75,8 @@
 
 <h4>Locally, you build and install it. Remotely, you push then install.</h4>
 
+<p><img src="http://surrealdetective.github.io/images/gem-cutter.jpg" title="Example Gem" alt="Gem directory structure, code, gemspec, and gem build command" /></p>
+
 <h3>LOCALLY</h3>
 
 <h4>Build</h4>
@@ -93,7 +95,7 @@
 
 <h2>Command Line and Gems (Slides 74-84)</h2>
 
-<p>Use the bash commands and a little C to modify and improve your Gem! I did not understand exactly how, but here the speaker extends the functionallity of his Gem by letting it take any string.</p>
+<p>Use the bash commands and a little C to modify and improve your Gem! I did not understand exactly how, but here the speaker extends the functionallity of his Gem by letting it take any string as a parameter.</p>
 
 <h2>Testing Resources (Slides 85-95)</h2>
 

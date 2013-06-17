@@ -33,7 +33,7 @@ There's a difference between .gem an gem files. I'm not sure at the moment, but 
 
 #### Locally, you build and install it. Remotely, you push then install. 
 
-![Gem directory structure](/images/tree.png "Example Gem")
+![Gem directory](/images/testtest.png "Example Gem")
 
 ### LOCALLY
 

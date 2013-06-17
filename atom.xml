@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-06-09T17:04:09-04:00</updated>
+  <updated>2013-06-16T22:53:44-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What should I learn when becoming a web developer?]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/06/16/what-should-i-learn-when-becoming-a-web-developer/"/>
+    <updated>2013-06-16T22:49:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/06/16/what-should-i-learn-when-becoming-a-web-developer</id>
+    <content type="html"><![CDATA[<p>How will you learn to program? What you learn first can determine your future as a programmer. As a novice, I can only speak to my experience. Here was my thinking process:</p>
+
+<p>I’d like to build useful and interesting projects as quickly as possible, while also making a living from my ability to program. After learning on my own and making steady but not lightning-fast progress, I looked for an immersive schooling program that would speed up my learning. The school I chose, the Flatiron School, teaches students in 4 months to be capable web programmers. Their curriculum prepares students to be Ruby on Rails web developers, with all students finding employment after graduation. This is exactly what I was looking for &ndash; fast and effective.</p>
+
+<p>So what do you learn in their curriculum?</p>
+
+<ol>
+<li><p>Basic Vocabulary &ndash; a web developer works both in visual space and data manipulation. Flatiron School’s pre-work begins with a quick grounding in how websites work and the concepts professionals use to design them.</p></li>
+<li><p>HTML &ndash; Just as Twitter uses tags to describe content, “Hypertext Markup Language” is used to describe the content of the Web. For example, a paragraph of text would be surrounded by a paragraph tag, and an image would be surrounded by an image tag. Using HTML makes it easy for search engines to figure out what a website is about, and it also helps web developers adjust the layout of a website.</p></li>
+<li><p>CSS &ndash; “Cascading Style Sheets” work with HTML to adjust the visual design of a website. For example, CSS can tell all paragraphs to appear in 14 point Helvetica font and to start as gray, but to fade to black when a user’s mouse hovers over the text. CSS makes it easier to visually design a site because it separates content from style, allowing for web developers to think about these two topics separately. Furthermore,  web developers can overhaul the style of a site very quickly using CSS &ndash; rather than changing the style of every paragraph in a large website containing thousands of articles, a web developer can change just one document that will then apply that style to all paragraphs of every article.</p></li>
+<li><p>Javascript &ndash; This is the programming language of the internet. It is used to listen for events and change the display on a website based on those events. Javascript is a programming language because developers can use it to instruct computers to make new methods that do entirely new things. By contrast, HTML and CSS are not programming languages because developers describe content with a set vocabulary, which web browsers read and apply a set of fixed methods to achieve their effects.</p></li>
+<li><p>Ruby &ndash; This is the programming language of Ruby on Rails. It is known for being intuitive to write and, when combined with Rails &ndash; to be a fast and effective way to make websites compared with other languages.</p></li>
+<li><p>Rails &ndash; This is an open source web application framework and server, which means that it is a standardized way to create a website. A website has a lot of files that interact with each other, and Rails is a popular way of having those files interact. It’s popular because many of the decisions for how website files interact is defaulted according to a easily-deciphered logic, allowing for developers to focus their mental efforts on adding value.</p></li>
+<li><p>The Command Line &ndash; computers can receive instructions through “the command line.” This is the standard way for programmers to interact with computers because many commands can only be issued through the command line.</p></li>
+<li><p>SQL &ndash; “Structured Query Language” is a popular database language. Databases store data in an easily retrievable format. When a website like Facebook displays the status updates of all your friends, it has to query that data before displaying it. Whereas it would take you or me dozens of hours to find that information in a stack of papers, databases are designed to make that process quick and accurate.</p></li>
+<li><p>Testing &ndash; while not technically requiring its own programming language, testing does use a distinct vocabulary and methodology. Because a website has a lot of moving parts, programmers create tests that let them identify which part suddenly breaks down with any change in the code.</p></li>
+<li><p>Best Practices &ndash; Just as in any discipline, there are some problems that have been “figured out.” These best practices are important to know because they are the best way to solve frequently occurring problems.</p></li>
+</ol>
+
+
+<p>I dabbled in programming for a year before deciding to become a programmer. The most important insight for me during this time was figuring out when to take programming seriously. If you want to find out if you’re interested, then dabble by all means. However, if you’re aiming to be capable as a programmer, then the sooner you get serious, the better &ndash; you’ve got a lot of work to do.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Primer on Making your own Gem]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/06/16/a-primer-on-making-your-own-gem/"/>
+    <updated>2013-06-16T22:19:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/06/16/a-primer-on-making-your-own-gem</id>
+    <content type="html"><![CDATA[<p>After being inspired by <a href="http://flatironschool.com/">Flatiron</a> students who created a <a href="http://shitavisays.tumblr.com/">shitavisays</a> <a href="https://rubygems.org/gems/shit-avi-says">gem</a>, I decided to prepare myself now to make a gem in the future. My first step is reading this <a href="https://speakerdeck.com/qrush/becoming-a-ruby-gemcutter">presentation</a>, which gives a brief overview of the gem-cutting process. See below for my own quick summary.</p>
+
+<h2>Introduction (Slides 1-13)</h2>
+
+<h4>Speaker Nick Quaranto introduces himself and his presentation.</h4>
+
+<h2>Gem* Definition (Slides 14-22)</h2>
+
+<p>Gems are a packed Ruby library or application. RubyGems help you download, install, and manipulate them.</p>
+
+<h2>Gem Content (Slides 23-44)</h2>
+
+<h4>Gems have three things: code, docs, and a gemspec.</h4>
+
+<p>Code are the methods that the gem adds to Ruby. Docs describe the code&rsquo;s functionality or aid the gem without being code. A gemspec specifies the required gems for the code to work.</p>
+
+<p>To access a gem&rsquo;s code in Ruby, use RubyGems to override the Ruby&rsquo;s standard $LOAD_PATH. This means a gem&#8217; code, such as found in a bin/ or lib/ folder of that gem, will be put into the $LOAD_PATH.</p>
+
+<p>There&rsquo;s a difference between .gem an gem files. I&rsquo;m not sure at the moment, but it seems that a gem is a subset of .gem because while a gem is a packed Ruby library, a .gem includes other data or metadata, both of which need to be unzipped from a compressed file format.</p>
+
+<h2>Why Make Gems (Slides 45-53)</h2>
+
+<h4>Reuse your code, practice coding with interesting projects, and help others.</h4>
+
+<h2>How to Make a Gem (Slides 54-72)</h2>
+
+<h4>Locally, you build and install it. Remotely, you push then install.</h4>
+
+<h3>LOCALLY</h3>
+
+<h4>Build</h4>
+
+<p>You need to write a Gemspec with metadata on your gem and code files that contain the methods of your Gem.</p>
+
+<h4>Install</h4>
+
+<p>After you install your gem, you should test it.</p>
+
+<h3>REMOTELY</h3>
+
+<h4>Push and Install</h4>
+
+<p>$gem push gem_name-0.0.0.gem will let you push it to RubyGems.org. Then you can install and run it.</p>
+
+<h2>Command Line and Gems (Slides 74-84)</h2>
+
+<p>Use the bash commands and a little C to modify and improve your Gem! I did not understand exactly how, but here the speaker extends the functionallity of his Gem by letting it take any string.</p>
+
+<h2>Testing Resources (Slides 85-95)</h2>
+
+<p>Test because you are releasing your Gem to the public, and you will be scrutinized.</p>
+
+<h2>Documentation (Slides 95-105)</h2>
+
+<p>Go to <a href="http://yarddoc.org">http://yarddoc.org</a> to learn how to document your code. Documentation helps others use your gem. Also, before pushing your gem, strongly consider saying hi to @rubygems on Twitter because webhook allows the rubygems community to scrutinize your gem the moment it&rsquo;s published, so it&rsquo;s a good idea to say hi to your future scrutinizers.</p>
+
+<h2>Classic Pointers for Gem-Cutting (Slides 106-151)</h2>
+
+<h4>What to do over the lifetime of a gem.</h4>
+
+<h5>Make your Gem Accessible</h5>
+
+<p>Write a README, use a license so your code isn&rsquo;t copyrighted, name your gem properly and version it using a major, minor, and patch scheme.</p>
+
+<h5>Make your Gem Work</h5>
+
+<p>Organize your file structure the right way by having only one top-level file. Also, specify your dependecies by being neither too optimistic or exact with the versions that you expect to work. Instead, specify a range, such all minor gem versions &lt; 1.0.0.</p>
+
+<h5>Be Classy</h5>
+
+<p>Cut prereleases of your gem so that people who install it have the expectation that it might still have bugs. Furthermore, use continuous integration to constantly test your code, which you can do for free at <a href="https://travis-ci.org/">https://travis-ci.org/</a>.</p>
+
+<h2>Gem-cutting Takeaways</h2>
+
+<ol>
+<li>Making a gem is pretty straightforward and rewarding</li>
+<li>To develop confidence, look over the presentation and make the easiest gem</li>
+<li>Prepare for feedback to your gem after you push it</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Branch is not an Origin]]></title>

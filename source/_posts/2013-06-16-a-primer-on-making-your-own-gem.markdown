@@ -33,7 +33,8 @@ There's a difference between .gem an gem files. I'm not sure at the moment, but 
 
 #### Locally, you build and install it. Remotely, you push then install. 
 
-![Gem directory structure, code, gemspec, and gem build command]<img src="gem-cutter.jpg" alt="Example Gem"/>
+<img src="{{ root_url }}/images/gem-cutting-primer.jpg" />
+See above for a Gem directory structure, some example code, its Gemspec, and the Gem build command.
 
 ### LOCALLY
 

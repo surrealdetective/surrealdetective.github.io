@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-06-17T13:21:55-04:00</updated>
+  <updated>2013-07-01T05:25:25-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -75,7 +75,8 @@
 
 <h4>Locally, you build and install it. Remotely, you push then install.</h4>
 
-<p><img src="http://surrealdetective.github.io/images/gem-cutter.jpg" title="Example Gem" alt="Gem directory structure, code, gemspec, and gem build command" /></p>
+<p><img src="http://surrealdetective.github.io/images/gem-cutting-primer.jpg" />
+See above for a Gem directory structure, some example code, its Gemspec, and the Gem build command.</p>
 
 <h3>LOCALLY</h3>
 

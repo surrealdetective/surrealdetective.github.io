@@ -33,6 +33,8 @@ Similarly, if there was another input, ```<input name="arrival_date">```, where 
 params == {:location => "New York City", :arrival_date => "June"}
 ```
 
+##Kick it up a Notch with a Nested Params Hash 
+
 Amazingly, you can modfiy the data structure of the params hash by carefully altering the name attribute of ```<input>```. For example, you can make the params hash contain an array of hashes. Because this process is slightly complex, I will first show off what's possible with an example, then list further below the key points for understanding how to do it.
 
 ```html

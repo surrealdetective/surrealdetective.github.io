@@ -181,11 +181,11 @@ Similarly, if there was another input, <code>&lt;input name="arrival_date"&gt;</
 <h2>Primer for Understanding Params</h2>
 
 <ol>
-<li><p>Realize that because the params hash stores form data, the user&rsquo;s entry will always be the value of a key-value pair.</p></li>
+<li><p>Realize that because the params hash stores form data, the user&rsquo;s entry <strong>should</strong> always be the value of a key-value pair.</p></li>
 <li><p>If you think of params hash as having a pointer to what will be returned, then everytime you add an extra layer, the data type of the extra layer &ndash; be it array or hash, will be the return of the formerly-lowest layer.</p>
 
 <ul>
-<li><p>In other words, <code>&lt;input name="game[][name][]" /&gt;</code> sets the value of the <code>:name=&gt;value</code> pair to an array, although this would break your app because according to rule 1, the user&rsquo;s entry must be the value of a key-value pair, which isn&rsquo;t the case here.</p></li>
+<li><p>In other words, <code>&lt;input name="game[][name][]" /&gt;</code> sets the value of the <code>:name=&gt;value</code> pair to an array, and although this wouldn&rsquo;t break your app, it doesn&rsquo;t make that much sense because there would be no way to track the attributes of a particular object. Every entry would be added to the array, rather than the array containing hash elements.</p></li>
 <li><p>Therefore you must end it with a key-value pair like <code>&lt;input name="game[][name][][syllables]" /&gt;</code>. Apologies for the quirky example, but here the user would input the number of syllables in the game&rsquo;s name, of which there are many: such as &ldquo;ping pong,&rdquo; &ldquo;table tennis,&rdquo; and &ldquo;pong.&rdquo;</p></li>
 </ul>
 </li>

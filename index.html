@@ -7,7 +7,7 @@
 	<meta name="author" content="Alex Au">
 
 	
-	<meta name="description" content="Jul 1st, 2013 Seth Godin&#8217;s Approach to Speaking With the Flatiron School Seth Godin came and talked to the Flatiron School today. This is what &hellip;">
+	<meta name="description" content="Jul 1st, 2013 The Nested Ruby Params Hash for Complex HTML Forms and Sinatra Showcasing the Normal, Unaltered Use of the Params Hash The params hash &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,163 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T23:02:00-04:00" data-updated="true" itemprop="datePublished">Jul 1<span>st</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/01/the-nested-ruby-params-hash-for-complex-html-forms-and-sinatra/" itemprop="url">The Nested Ruby Params Hash for Complex HTML Forms and Sinatra</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h2>Showcasing the Normal, Unaltered Use of the Params Hash</h2>
+
+<p>The params hash is a <a href="http://en.wikipedia.org/wiki/Rack">&ldquo;rack&rdquo;</a>  object that is accessible through Sinatra&rsquo;s request object. This params hash stores information posted by html forms in the form of -you guessed it &ndash; a hash, which contains a key-value pair. The key of this pair defaults to the value of the <code>&lt;input&gt;</code>&rsquo;s name=&ldquo;attribute&rdquo;. Meanwhile, the info that the user submits is the value of that key-value pair.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&#39;/&#39;</span> <span class="na">method=</span><span class="s">&quot;POST&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;label&gt;</span>Location<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;location&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>     <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/input&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the above html, you can access the user&rsquo;s entry in app.rb within the <code>post '/' do</code> route:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">post</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@location</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
+</span><span class='line'>  <span class="s2">&quot;Ain&#39;t </span><span class="si">#{</span><span class="vi">@location</span><span class="si">}</span><span class="s2"> grand?&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If I entered &ldquo;New York City&rdquo; into the <code>&lt;input name="location"/&gt;</code>, then <code>@location = "New York City"</code>.
+Similarly, if there was another input, <code>&lt;input name="arrival_date"&gt;</code>, where I entered &ldquo;June,&rdquo; then the params hash would have two key-value pairs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">params</span> <span class="o">==</span> <span class="p">{</span><span class="ss">:location</span> <span class="o">=&gt;</span> <span class="s2">&quot;New York City&quot;</span><span class="p">,</span> <span class="ss">:arrival_date</span> <span class="o">=&gt;</span> <span class="s2">&quot;June&quot;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Amazingly, you can modfiy the data structure of the params hash by carefully altering the name attribute of <code>&lt;input&gt;</code>. For example, you can make the params hash contain an array of hashes. Because this process is slightly complex, I will first show off what&rsquo;s possible with an example, then list further below the key points for understanding how to do it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;h1&gt;</span>List of Games with Name, Difficulty, and Number of Players<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&#39;/games&#39;</span> <span class="na">method=</span><span class="s">&quot;POST&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>% 5.times do %&gt;
+</span><span class='line'>    <span class="nt">&lt;fieldset&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;label&gt;</span>Name<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;input</span> <span class="err">...</span> <span class="na">name=</span><span class="s">&quot;game[][name]&quot;</span><span class="nt">/&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;label&gt;</span>Difficulty<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;input</span> <span class="err">...</span> <span class="na">name=</span><span class="s">&quot;game[][difficulty]&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;label&gt;</span>Players<span class="nt">&lt;/label&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;input</span> <span class="err">...</span> <span class="na">name=</span><span class="s">&quot;game[][players]&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/fieldset&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/form&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above form outputs the following params hash:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">params</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;game&quot;</span><span class="o">=&gt;[</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Connect 4&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Easy&quot;</span><span class="p">,</span> <span class="s2">&quot;players&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;2&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Go Fish&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Easy&quot;</span><span class="p">,</span> <span class="s2">&quot;players&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Monopoly&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Easy&quot;</span><span class="p">,</span> <span class="s2">&quot;players&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Chess&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Hard&quot;</span><span class="p">,</span> <span class="s2">&quot;players&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;2&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Settlers of Catan&quot;</span><span class="p">,</span> <span class="s2">&quot;difficulty&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;Medium&quot;</span><span class="p">,</span> <span class="s2">&quot;players&quot;</span><span class="o">=&gt;</span><span class="s2">&quot;4&quot;</span><span class="p">}</span><span class="o">]</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, the params hash&rsquo;s top-layer has only one key-value pair, with &ldquo;game&rdquo; as its key. If you look at the html form, this initially makes sense because game is repeated as the top-layer for all three inputs.</p>
+
+<p>As programmers, we then have a choice of modifying the value of this pair from a string into something else. If we want to turn the pair&rsquo;s value into an array, then we write an empty array as above. If we want to make the value a hash, then we surround the attribute in square brackets.</p>
+
+<p>Notice that each hash in the array contains 3 key-value pairs. Just like the first example with &ldquo;arrival_date&rdquo; and &ldquo;location,&rdquo; adding a key-value pair on the same layer will add a key-value pair to that same hash &ndash; not create another hash inside a hash.</p>
+
+<p>At this point, your brain might be wheeling a bit. Hopefully these rules below will help you clarify how to alter the params hash through html forms.</p>
+
+<h2>Primer for Understanding Params</h2>
+
+<ol>
+<li><p>Realize that because the params hash stores form data, the user&rsquo;s entry will always be the value of a key-value pair.</p></li>
+<li><p>If you think of params hash as having a pointer to what will be returned, then everytime you add an extra layer, the data type of the extra layer &ndash; be it array or hash, will be the return of the formerly-lowest layer.</p>
+
+<ul>
+<li><p>In other words, <code>&lt;input name="game[][name][]" /&gt;</code> sets the value of the <code>:name=&gt;value</code> pair to an array, although this would break your app because according to rule 1, the user&rsquo;s entry must be the value of a key-value pair, which isn&rsquo;t the case here.</p></li>
+<li><p>Therefore you must end it with a key-value pair like <code>&lt;input name="game[][name][][syllables]" /&gt;</code>. Apologies for the quirky example, but here the user would input the number of syllables in the game&rsquo;s name, of which there are many: such as &ldquo;ping pong,&rdquo; &ldquo;table tennis,&rdquo; and &ldquo;pong.&rdquo;</p></li>
+</ul>
+</li>
+<li><p>By convention, you leave the top-layer of the params hash as being without square brackets, despite the fact that it is a key-value pair inside the params hash.</p></li>
+<li><p>When in doubt, practice using the following method in irb:</p></li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rack&#39;</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</span><span class='line'> <span class="ss">Rack</span><span class="p">:</span><span class="ss">:Utils</span><span class="o">.</span><span class="n">parse_nested_query</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and use the following syntax: <code>p("game[][name][][syllables]" )</code></p>
+
+<p>Now as a challenge, can you decipher what the above params hash looks like?</p>
+
+<p>Answer:
+<code>params == {:game =&gt; [{:name=&gt; [ {:syllables=&gt; value} ] }] }</code></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

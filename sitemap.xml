@@ -23,12 +23,18 @@
         <lastmod>2013-07-01T13:39:13-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://surrealdetective.github.io/blog/2013/07/01/the-nested-ruby-params-hash-for-complex-html-forms-and-sinatra/
+        </loc>
+        <lastmod>2013-07-01T23:20:00-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://surrealdetective.github.io/blog/archives/</loc>
-        <lastmod>2013-07-01T13:39:13-04:00</lastmod>
+        <lastmod>2013-07-01T23:20:00-04:00</lastmod>
     </url>
     <url>
         <loc>http://surrealdetective.github.io/</loc>
-        <lastmod>2013-07-01T13:39:13-04:00</lastmod>
+        <lastmod>2013-07-01T23:20:00-04:00</lastmod>
     </url>
     <url>
         <loc>http://surrealdetective.github.io/robots.txt</loc>

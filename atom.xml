@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-07-02T09:39:24-04:00</updated>
+  <updated>2013-07-19T07:58:18-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tracking the Results of a Rails-Powered Survey]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/07/18/tracking-the-results-of-a-rails-powered-survey/"/>
+    <updated>2013-07-18T08:45:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/07/18/tracking-the-results-of-a-rails-powered-survey</id>
+    <content type="html"><![CDATA[<h2>Setup of my Rails Survey App</h2>
+
+<p>After officially entering the world of rails a couple weeks ago at the Flatiron School, I decided to start a personal rails project to solidify my skills. I chose to put the survey porition of my undergrad these online. The survey asks respondents questions about their perception of a learning experience. The data is ideally displayed in a series of radar graphs and bar graphs. This blog post focuses on how I collect survey responses in the correct format.</p>
+
+<p>Luckily for me, the Flatiron Dean made a Quiz App a public repo during class. I forked this repo, which already had 5 models: Quiz, Question, Choice, Answer, and User. My task now was to calculate the results.</p>
+
+<h2>Collect the Rails App Survey Results</h2>
+
+<p>For the purpose of this post, the survey has 48 questions, which is broken down into 6 sets of 8 questions. The method I made to solve this problem was three-tiered:</p>
+
+<ol>
+<li>Collect survey answers in sets of 8</li>
+<li>Correctly compare a user&rsquo;s answer with all possible choices</li>
+<li>Based on the user&rsquo;s answer, assign that person a score</li>
+</ol>
+
+
+<p>See the code below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Quiz</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:questions</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:results</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">results_as_set_of_8</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">range</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>     <span class="nb">self</span><span class="o">.</span><span class="n">questions</span><span class="o">[</span><span class="n">range</span><span class="o">].</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">q</span><span class="p">,</span> <span class="n">qi</span><span class="o">|</span>
+</span><span class='line'>       <span class="n">q</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="p">,</span> <span class="n">ci</span><span class="o">|</span>
+</span><span class='line'>         <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">user</span><span class="o">.</span><span class="n">answers</span><span class="o">[</span><span class="n">range</span><span class="o">.</span><span class="n">first</span> <span class="o">+</span> <span class="n">qi</span><span class="o">].</span><span class="n">choice_id</span>
+</span><span class='line'>           <span class="n">score</span> <span class="o">+=</span> <span class="n">ci</span> <span class="o">+</span><span class="mi">5</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">ci</span><span class="p">)</span>
+</span><span class='line'>         <span class="k">end</span>
+</span><span class='line'>       <span class="k">end</span>
+</span><span class='line'>     <span class="k">end</span>
+</span><span class='line'>     <span class="k">return</span> <span class="n">score</span><span class="o">/</span><span class="mi">8</span><span class="o">.</span><span class="mi">0</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li><h3>Sets of 8 uses <code>range</code></h3>
+
+<p> This method takes <code>range</code> as a parameter, so that I can specify which set of 8 questions. The range also gets used to compare the question with its corresponding answer.</p></li>
+<li><h3>Correctly compare a user&rsquo;s answers with all possible choices</h3>
+
+<p> I used the <code>each_with_index</code> method on the <code>range</code> of questions to find two pieces of information:</p>
+
+<p> <em>which question id corresponds with the first answer id (start at range.first)
+ </em>as the <code>.each</code> enumerable changes which question is being handled, correspond that change with the appropriate answer id (by proceeding upwards with qi)</p>
+
+<p> To do this, I specified which answer with:</p>
+
+<p> <code>ruby
+ user.answers[range.first + qi]
+</code></p>
+
+<p> Once this synchronization between question and a user&rsquo;s answer is made, I checked all of a question&rsquo;s choices to see if their id matches the answer&rsquo;s choice id, of which it has only one.</p></li>
+<li><h3>Based on the user&rsquo;s answer, assign that person a score</h3>
+
+<p> Another challenge was associating number values with the choice object, which has the single String attribute of :content. Becuase the survey arranges <code>choice.content</code> from values of 5 to 1, such as, &ldquo;Strongly Agree, Agree, Neither Agree nor Disagree, Disagree, Strongly Disagree,&rdquo; I ended up making a simple formula to assign the right score:</p>
+
+<p> <code>ruby
+ score += ci +5 - (2*ci)
+</code></p>
+
+<p> Everytime the user&rsquo;s answer&rsquo;s choice id matches a quesiton&rsquo;s choice id, then based on its position in <code>a.choices</code>, the above algebraic expression calculates the right score. Furthermore, this method finds the score sum because at the end, it finds the average score with <code>score/8.0</code>.</p></li>
+</ol>
+
+
+<h2>Coding Takeaways</h2>
+
+<ol>
+<li><p>Make it work</p>
+
+<p> Things might have been easier for me if I gave choices a value attribute. Tracking the value of a choice would make they survey app more flexible, such as if i wanted to randomize the order in which choices appear.</p>
+
+<p> But rather than going backwards over my code, I moved forward first, trusting my ability to refactor in the future.</p></li>
+<li><p>Use debugger</p>
+
+<p> Initially, I missed how to correctly associate <code>user.answers</code> with <code>quiz.quesitons</code>. My method worked for the first set of 8 questions, but not for sets after that. By looking at the progression of the code through debugger, I visibly saw where my method failed becuase the <code>if c.id</code> statement was never triggered.</p></li>
+</ol>
+
+
+<p>By focusing on making it work, and looking at the code with detail and granularity, I quickly made my app functional. Though next time, I&rsquo;ll add a value attribute to the choice model and make my life easier.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Nested Ruby Params Hash for Complex HTML Forms and Sinatra]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-08-04T23:24:23-04:00</updated>
+  <updated>2013-08-19T15:56:19-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,258 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript Basics for Your Second Programming Language: Variables]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/08/19/javascript-basics-for-your-second-programming-language-variables/"/>
+    <updated>2013-08-19T15:36:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/08/19/javascript-basics-for-your-second-programming-language-variables</id>
+    <content type="html"><![CDATA[<h1>Javascript Basics: Variables, Functions, and Scopes //plus comments</h1>
+
+<h2>First Experience</h2>
+
+<p>I&rsquo;m learning Javascript after learning Ruby. Below are my notes from <a href="http://jqfundamentals.com/chapter/javascript-basics.">http://jqfundamentals.com/chapter/javascript-basics.</a> Feel free to follow along!</p>
+
+<h3>My First Original Function</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">explanation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">exclamation</span> <span class="o">=</span> <span class="s1">&#39;But &#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">log</span><span class="p">(</span> <span class="nx">exclamation</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">explanation</span><span class="p">(</span><span class="s1">&#39;Jerry&#39;</span><span class="p">,</span> <span class="s2">&quot;I was over the rainbow&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">explanation</span><span class="p">(</span><span class="s1">&#39;Jasmine&#39;</span><span class="p">,</span> <span class="s2">&quot;I wanted some tea.&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3 Lessons:</h4>
+
+<ol>
+<li>Define a variable using var variable_name =</li>
+<li>A function takes parameters that you can use inside that function</li>
+<li>All variable assignments or methods end with a ;</li>
+</ol>
+
+
+<h3>1 Minute Assignment:</h3>
+
+<p>Write an original function using the basic pattern above.</p>
+
+<h3>Comments</h3>
+
+<ol>
+<li>// is used to make a comment</li>
+<li>/* is used to begin a multi-line comment</li>
+<li>*/ is used to end a multi-line comment</li>
+</ol>
+
+
+<h3>Variables</h3>
+
+<ol>
+<li>Variables do not begin with a number or hyphen</li>
+<li>Functions can only be called when defined as a variable</li>
+<li>Define a function as a variable using var or function</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">myage</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">declaration</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">age</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">b</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">log</span><span class="p">(</span> <span class="nx">declaration</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">age</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; years old.&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">myage</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;I am&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2 Takeaways:</h4>
+
+<ol>
+<li>For functions within a function, the nested functions should use the parameters provided in the outer functions and not introduce new parameters.</li>
+<li>&ldquo;Function Expressions&rdquo; begin with a var, and are superior to &ldquo;function declarations&rdquo; because the former they are more predictable and can be used in larger scopes. See <a href="http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/">http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/</a> for more detail.</li>
+</ol>
+
+
+<h3>1 Minute Assignment:</h3>
+
+<p>Write a function inside a function like above and successfully call it.</p>
+
+<h3>Return Value</h3>
+
+<ol>
+<li>Use return to perform math</li>
+<li>Wrap a command in the log(); method to print the return value in the console</li>
+<li>There can be no return values after errors.</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">foo</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">());</span>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span> <span class="k">typeof</span> <span class="nx">foo</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">hilarious</span><span class="p">;</span>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span><span class="nx">myFunction</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Above, the return values are bar and undefined. The command <code>hilarious;</code> is not defined and also breaks the Javascript, preventing it from reprinting bar.</p>
+
+<p>If you&rsquo;re not using a dynamic editor, use <code>console.log()</code> to print Javascript into your browser&rsquo;s console.</p>
+
+<h3>Scope</h3>
+
+<ul>
+<li><p>Functions create a scope wherein variables defined within are not acknowledged wihtout. This is why <code>log( typeof foo)</code> returns undefined, because foo is undefined outside of myFunction.</p>
+
+<p>  It&rsquo;s worth noting that the same function without &lsquo;return&rsquo; will return undefined because it is outside scope.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">foo</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Because of variable scope, you can have different variables that share the same name, but exist in different scopes.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;qux&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">//returns &#39;qux&#39;</span>
+</span><span class='line'><span class="nx">myFunction</span><span class="p">();</span> <span class="c1">//does it redefine foo as &#39;bar&#39;?</span>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">//nope, still returns &#39;qux&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>Therefore it&rsquo;s best to name variables uniquely and descriptively to avoid confusion between scopes.</p></li>
+<li><p>Generally, use var to assign all variables because otherwise, the variable you define will default to a global scope.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">test</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">log</span><span class="p">(</span> <span class="nx">a</span> <span class="p">);</span> <span class="c1">// logs 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Don&rsquo;t do the above because if you set the variable <code>a</code> in other places in your code, there will be conflict.</p>
+
+<p>To solidfy your understanding, try the following exercise:</p>
+
+<h3>Culminating Exercise</h3>
+
+<p>Build an &ldquo;ATM&rdquo; using only javascript. Create a file called atm.html and insert your code within two script tags. Your ATM should tell you what your starting balance is and allow you to deposit, withdraw, and exit the ATM. Assuming that you&rsquo;re new to Javascript, aim for a minimal ATM program in 45 minutes.</p>
+
+<p>Try the following methods in your browser&rsquo;s console, as they will prove very useful. Good luck!</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'>  <span class="c1">//interact with the user</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;your message&#39;</span><span class="p">);</span>    <span class="c1">//sends a one-way message to user</span>
+</span><span class='line'>  <span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;your message&#39;</span><span class="p">);</span>   <span class="c1">//returns user input </span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//such as:</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//interpret user input</span>
+</span><span class='line'>  <span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;seventeen&#39;</span><span class="p">);</span> <span class="c1">// evaluates to true or false</span>
+</span><span class='line'>  <span class="nb">parseInt</span><span class="p">(</span><span class="s2">&quot;17&quot;</span><span class="p">);</span>     <span class="c1">// =&gt;17 </span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//perform actions based on conditions</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">someMethod</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">someMethod</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//conditions</span>
+</span><span class='line'>  <span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;Alex&#39;</span> <span class="c1">// evaluates to true or false</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Simplify a Complex User Interface With 3 Design Principles]]></title>

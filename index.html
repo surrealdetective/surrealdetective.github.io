@@ -7,7 +7,7 @@
 	<meta name="author" content="Alex Au">
 
 	
-	<meta name="description" content="Aug 19th, 2013 Javascript Basics for Your Second Programming Language Javascript Basics: Variables, Functions, and Scopes //plus comments! First &hellip;">
+	<meta name="description" content="Sep 5th, 2013 CSS Positioning Essentials: Clearfix, Wrapper, and Overflow To stop a div from taking the wrong spot, use these 3 standard CSS tricks &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,104 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-05T16:43:00-04:00" data-updated="true" itemprop="datePublished">Sep 5<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/05/css-positioning-essentials-clearfix/" itemprop="url">CSS Positioning Essentials: Clearfix, Wrapper, and Overflow</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>To stop a <code>div</code> from taking the wrong spot, use these 3 standard CSS tricks to stay in control.</p>
+
+<h2>Clearfix for Pro Positioning</h2>
+
+<p>Sometimes you want your parent div to have a height, but it collapses to zero height when its children div float left. To give it a height, use the clearfix solution (note that clearfix is used for block elements, and not inline-block elements, which requires other fixes if you want to use it).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.clearfix</span><span class="nd">:after</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">content</span><span class="o">:</span> <span class="s2">&quot;.&quot;</span><span class="p">;</span>       <span class="o">//</span><span class="n">adds</span> <span class="k">content</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>     <span class="o">//</span><span class="k">block</span> <span class="k">display</span> <span class="n">makes</span> <span class="n">it</span> <span class="m">100</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="k">width</span>
+</span><span class='line'>  <span class="k">clear</span><span class="o">:</span> <span class="k">both</span><span class="p">;</span>        <span class="o">//</span><span class="k">clear</span> <span class="n">puts</span> <span class="n">the</span> <span class="n">period</span> <span class="k">below</span> <span class="n">the</span> <span class="n">divs</span> <span class="n">children</span>
+</span><span class='line'>  <span class="k">visibility</span><span class="o">:</span> <span class="k">hidden</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">height</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>          <span class="o">//</span><span class="n">bc</span> <span class="k">height</span> <span class="n">is</span> <span class="m">0</span><span class="o">,</span> <span class="n">the</span> <span class="n">div</span><span class="err">&#39;</span><span class="n">s</span> <span class="k">height</span> <span class="n">is</span> <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">max</span> <span class="k">height</span> <span class="n">of</span> <span class="n">its</span> <span class="n">children</span>
+</span><span class='line'>  <span class="k">line-height</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A parent <code>div</code> collapses because its height is determined its contents, but floating its children divs effectively makes it empty. The clearfix class is a signal to the parent <code>div</code> that it is not empty. It accomplishes this feat by actually adding html content, in this case, a period, which acts as a ruler for the parent <code>div</code> letting it know how tall its chidlren are.</p>
+
+<h4>Clearfix Exercise</h4>
+
+<p>Make four <code>div</code>s: one parent <code>div</code>, and three children <code>div</code> as its contents. Give the 3 children <code>div</code> a height and width, then float them left. Verify that the parent <code>div</code> has collaspsed to a height of zero. Finally, give the parent <code>div</code> a clearfix class to give it a height.</p>
+
+<h2>Wrapper for Simple Centering</h2>
+
+<p>It&rsquo;s common to limit the width of where your main site&rsquo;s content appears. Furthermore, you want that container for your text to be centered within its parent <code>div</code>, the most common case being the browser window. By implementing a wrapper class, you can arbitrarily make any <code>div</code> centered within its parent <code>div</code> by surrounding it with a <code>div</code> with the wrapper class.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.wrapper</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="k">auto</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This works by setting the left and right margins to be automatically set by the browser as equal, which centers that <code>div</code>&rsquo;s contents, as long at they are also block elements. If you want to center the text of an element, use <code>text-align: center;</code>.</p>
+
+<h2>Overflow for Stabilizing Div Areas</h2>
+
+<p>When text is generated dynamically, such as a user-written bio written on her profile, your design could require its containing <code>div</code> to be less than a specific height. But if a user writes a very long bio, that text content would break out of your <code>div</code> and compromise your design.</p>
+
+<p>One solution is to simply limit the amount of text that a person can enter into the bio. Another is to limit the number of characters that can be displayed in the view. The third solution involves the overflow css property.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Overflow auto generates a side scroll in your <code>div</code> when its contents are larger than the <code>div</code>&rsquo;s desired size. You can also use <code>overflow: hidden;</code> to stop oversized contents from being displayed outside of its container <code>div</code>.</p>
+
+<h4>Wrapper Overflow Exercise</h4>
+
+<p>Create a <code>div</code> with a fixed width and height. Give it contents that go outside the <code>div</code>. Then use the overlfow property to keep the contents inside the <code>div</code>. Next, give that <code>div</code> a wrapper class with a css rule <code>margin: 0 auto;</code>.</p>
+
+<p>Good luck!</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

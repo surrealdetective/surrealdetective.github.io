@@ -53,12 +53,18 @@
         <lastmod>2013-09-05T16:56:31-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://surrealdetective.github.io/blog/2013/09/12/programming-chess-moving-a-rook-in-ruby/
+        </loc>
+        <lastmod>2013-09-12T12:44:49-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://surrealdetective.github.io/blog/archives/</loc>
-        <lastmod>2013-09-05T16:56:31-04:00</lastmod>
+        <lastmod>2013-09-12T12:44:49-04:00</lastmod>
     </url>
     <url>
         <loc>http://surrealdetective.github.io/</loc>
-        <lastmod>2013-09-05T16:56:31-04:00</lastmod>
+        <lastmod>2013-09-12T12:44:49-04:00</lastmod>
     </url>
     <url>
         <loc>http://surrealdetective.github.io/robots.txt</loc>

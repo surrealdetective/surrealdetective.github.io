@@ -1,0 +1,150 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Technology Behind the Pedagogy Gap Survey - Surreal Detective</title>
+	<meta name="author" content="Alex Au">
+
+	
+	<meta name="description" content="Technology Behind the Pedagogy Gap Survey Pedagogy Gap is a free online survey that helps teachers make learning more relevant for their middle and &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Surreal Detective" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://surrealdetective.github.io/blog/2013/09/23/technology-behind-the-pedagogy-gap-survey/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='/images/alex-au-fis.png' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+</div>
+<hgroup>
+  <h1><a href="/">Surreal Detective</a></h1>
+  
+    <h2>A Learnng to Code Guide</h2>
+  
+</hgroup>
+
+<p class="subtitle">A Learnng to Code Guide</p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Technology Behind the Pedagogy Gap Survey</h1>
+	<div class="entry-content" itemprop="articleBody"><p><a href="http://www.pedagogygap.com">Pedagogy Gap</a> is a free online survey that helps teachers make learning more relevant for their middle and high school kids. It&rsquo;s the product of my undergrad thesis, a year&rsquo;s worth of research and writing. I&rsquo;m excited to see if students or teachers will find it interesting. For now though, I&rsquo;ll discuss the technology behind the site.</p>
+
+<ol>
+<li><p> <a href="http://rubyonrails.org/"><strong>Ruby on Rails</strong></a></p>
+
+<p>  A popular web framework that&rsquo;s intuitive and powerful. Because the site has many models and persists data in a database, I decided not to go with Sinatra, which is a smaller web framework.</p></li>
+<li><p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a></p>
+
+<p>  A popular Javascript plugin that graphs data. It&rsquo;s easy to work with and beautiful too. By making my graphs render as partials, I could dynamically generate different sets of data with just a few javascript files. For example, I have 3 Highcharts javascript files generate 18 different graphs.</p></li>
+<li><p> <a href="http://designmodo.github.io/Flat-UI/"><strong>Flat-ui</strong></a></p>
+
+<p>  It&rsquo;s a free and elegant theme.</p></li>
+<li><p> <strong>Anonymous Students</strong></p>
+
+<p>  I wanted students to take the survey without having an email address, but also without using an awkwardly long and hard-to-remember token. So I made students a separate model from users who require authentication. Instead, teachers give students a passcode that allows them to create a student.</p>
+
+<p>  So while this lowers barriers to using the survey, because teachers do not have to collect their students&#8217; email addresses to send them the survey, this creates the concern that students could take multiple surveys.</p>
+
+<p>  In the future, I will add features that make this situation more secure; however, I wanted this survey to be as easy to take as possible. Another benefit is that students can initiate the survey without having their entire class&#8217; emails.</p></li>
+</ol>
+
+
+<p>Please take a look at <a href="http://www.pedagogygap.com">www.pedagogygap.com</a>. You can sign in with pre-populated survey results using these credentials: [{email: curious@curious.com, password: curious}, {survey_id: 15, survey_password: curious}]. Let me know what you think <a href="https://twitter.com/surrealdetectiv">@surrealdetectiv</a>.</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - Alex Au -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

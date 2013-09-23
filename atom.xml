@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-09-12T12:45:04-04:00</updated>
+  <updated>2013-09-23T15:51:51-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Technology Behind the Pedagogy Gap Survey]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/09/23/technology-behind-the-pedagogy-gap-survey/"/>
+    <updated>2013-09-23T15:44:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/09/23/technology-behind-the-pedagogy-gap-survey</id>
+    <content type="html"><![CDATA[<p><a href="http://www.pedagogygap.com">Pedagogy Gap</a> is a free online survey that helps teachers make learning more relevant for their middle and high school kids. It&rsquo;s the product of my undergrad thesis, a year&rsquo;s worth of research and writing. I&rsquo;m excited to see if students or teachers will find it interesting. For now though, I&rsquo;ll discuss the technology behind the site.</p>
+
+<ol>
+<li><p> <a href="http://rubyonrails.org/"><strong>Ruby on Rails</strong></a></p>
+
+<p>  A popular web framework that&rsquo;s intuitive and powerful. Because the site has many models and persists data in a database, I decided not to go with Sinatra, which is a smaller web framework.</p></li>
+<li><p> <a href="http://www.highcharts.com/"><strong>HighCharts</strong></a></p>
+
+<p>  A popular Javascript plugin that graphs data. It&rsquo;s easy to work with and beautiful too. By making my graphs render as partials, I could dynamically generate different sets of data with just a few javascript files. For example, I have 3 Highcharts javascript files generate 18 different graphs.</p></li>
+<li><p> <a href="http://designmodo.github.io/Flat-UI/"><strong>Flat-ui</strong></a></p>
+
+<p>  It&rsquo;s a free and elegant theme.</p></li>
+<li><p> <strong>Anonymous Students</strong></p>
+
+<p>  I wanted students to take the survey without having an email address, but also without using an awkwardly long and hard-to-remember token. So I made students a separate model from users who require authentication. Instead, teachers give students a passcode that allows them to create a student.</p>
+
+<p>  So while this lowers barriers to using the survey, because teachers do not have to collect their students&#8217; email addresses to send them the survey, this creates the concern that students could take multiple surveys.</p>
+
+<p>  In the future, I will add features that make this situation more secure; however, I wanted this survey to be as easy to take as possible. Another benefit is that students can initiate the survey without having their entire class&#8217; emails.</p></li>
+</ol>
+
+
+<p>Please take a look at <a href="http://www.pedagogygap.com">www.pedagogygap.com</a>. You can sign in with pre-populated survey results using these credentials: [{email: curious@curious.com, password: curious}, {survey_id: 15, survey_password: curious}]. Let me know what you think <a href="https://twitter.com/surrealdetectiv">@surrealdetectiv</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Programming Chess: Moving a Rook in Ruby]]></title>

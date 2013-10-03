@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-09-23T15:51:51-04:00</updated>
+  <updated>2013-10-03T11:24:09-04:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ArtsEdTechNYC... the best meetup ever?]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/10/03/artsedtechnyc-dot-dot-dot-the-best-meetup-ever/"/>
+    <updated>2013-10-03T10:41:00-04:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/10/03/artsedtechnyc-dot-dot-dot-the-best-meetup-ever</id>
+    <content type="html"><![CDATA[<p>The <a href="http://www.meetup.com/ArtsEdTechNYC/events/133578522/">recent ArtsEdTech meetup</a> is the best Meetup I&rsquo;ve attended for one reason, and one reason only. Do take my opinion with a grain of salt &ndash; I&rsquo;m a newcomer to the Meetup scene, and this meetup&rsquo;s theme fits my background perfectly: my dad and brother are graphics designers, I used to be an edu-policy analyst, and now I&rsquo;m a Ruby on Rails developer. But what made the ArtsEdTech meetup so darn special was the quality of the connections made at the event.</p>
+
+<p>My first conversation was 90 minutes long, with the people I happened to meet on the elevator. One guy works for <a href="http://4pt0.org/">4.0 Schools</a>. Another is a SPED expert, and the other works for <a href="http://amplify.com/">Amplify</a>. Together, we shared perspective that was heartfelt, genuine, and slightly radical. We came to ArtsEdTech because we&rsquo;re upset with education. But we also share a common belief that Ed-tech needs more heart, and the Arts need inclusion. Not exactly a radical stance, but when you talk to educators who are confronted by this reality everyday &ndash; how old ways of doing things prevail over exploration and experimentation &ndash; you wonder what keeps the current system place if nobody likes it.</p>
+
+<p>However, at least two people boldy broadcast how education needs both heart and mind: <a href="https://twitter.com/SamBlancoBCBA">Sam Blanco</a> and <a href="https://twitter.com/JessicaLWilt">Jessica Wilt</a>. These two educators deeply inspired me: Sam for organizing and hacking learning resources for SPED, and Jessica for identifying the need for and bringing together ArtsEdTechNYC. Because I love their work, I&rsquo;m <a href="https://www.gittip.com/about/">Gittiping</a> <a href="https://www.gittip.com/on/twitter/SamBlancoBCBA/">them</a> <a href="https://www.gittip.com/on/twitter/JessicaLWilt/">both</a> a nominal amount to show my support. Please check out <a href="http://teachthrough.com/">Sam&rsquo;s website</a> or attend the <a href="http://www.meetup.com/ArtsEdTechNYC/">next ArtsEdTech meetup</a>.</p>
+
+<p>If you&rsquo;ve just gotten really excited and marked your calendar for the next ArtsEdTech meetup, then here&rsquo;s my advice on how to get the most out of the experience:</p>
+
+<ol>
+<li><p>Bring a pet idea for how you would change education and share it with others. You&rsquo;ll be pleasantly surprised by the positive reception and critical insight you receive.</p></li>
+<li><p>Share your expertise with others. You know something that others don&rsquo;t. Share it and everyone benefits.</p></li>
+<li><p>Be passionate. Believe that people who come together with a common belief can make a difference. We&rsquo;re doing this for the kids, really.</p></li>
+</ol>
+
+
+<p>By the way, if you&rsquo;re a developer or know developer friends, I&rsquo;m the only attendee that I met who described themselves as a programmer. There&rsquo;s a huge opportunity for collaboration between passion-bleeding educators and do-gooder coders. If you can, make it happen.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Technology Behind the Pedagogy Gap Survey]]></title>

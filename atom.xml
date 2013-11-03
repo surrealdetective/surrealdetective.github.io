@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-10-03T11:24:09-04:00</updated>
+  <updated>2013-11-03T11:02:52-05:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,124 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML Selectbox Updating with Javascript and Dynamic Ruby]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/11/03/html-selectbox-updating-with-javascript-and-dynamic-ruby/"/>
+    <updated>2013-11-03T10:13:00-05:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/11/03/html-selectbox-updating-with-javascript-and-dynamic-ruby</id>
+    <content type="html"><![CDATA[<h2>The Goal</h2>
+
+<p>You&rsquo;re making a form with 2 selectboxes: based on the user&rsquo;s selection in the first box, the second box updates. A possible use is an interactive menu with a selectbox (drink, appetizer, dessert), and a second selectbox that updates (coffee, juice, tea &mdash; if you select drink).</p>
+
+<p>How do we write the HTML, Ruby, CSS, and Javascript to make it work?</p>
+
+<h2>HTML &amp; Javascript Overview</h2>
+
+<p>Use the <code>.change()</code> jQuery method as the event listener for the first selectbox. Based on the name attribute of option selected, use CSS to reveal the correct set of 2nd-selectbox options.</p>
+
+<p>I created a <code>.hide {display: none;}</code> CSS rule and applied it to all 2nd-selectbox options. For these same selectboxes, I gave them the same ID as the name attribute of the matching option of the first selectbox.</p>
+
+<p>Furthermore, I used Ruby and ERB to grab &ldquo;Subjects&rdquo; and &ldquo;Details&rdquo; from my database. In the code below, Detail belongs_to :subject, and Subject has_many :details.</p>
+
+<p>See the Javascript and HTML code below:</p>
+
+<h3>HTML</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;h3&gt;Pick your subject:&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;select id="first-selectbox"&gt;
+</span><span class='line'>  &lt;option value="" name="select-one"&gt;Select One&lt;/option&gt;
+</span><span class='line'>&lt;% Subject.list.each do |subject| %&gt;
+</span><span class='line'>  &lt;option value=&lt;%= cssable(subject) %&gt; name="&lt;%= cssable(subject) %&gt;"&gt;&lt;%= subject.titleize %&gt;&lt;/option&gt;
+</span><span class='line'>&lt;% end %&gt;
+</span><span class='line'>&lt;/select&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Pick your detail:&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;select class="show" id="no-details"&gt;
+</span><span class='line'>  &lt;option value=""&gt;Select One&lt;/option&gt;
+</span><span class='line'>&lt;/select&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;% @subjects.each do |subject| %&gt;
+</span><span class='line'>  &lt;select class="hide" id="&lt;%= cssable(subject.title) %&gt;"&gt;
+</span><span class='line'>    &lt;option value=""&gt;Select One&lt;/option&gt;
+</span><span class='line'>  &lt;% subject.detail_list.each do |detail| %&gt;
+</span><span class='line'>    &lt;option value="&lt;%= detail %&gt;"&gt;
+</span><span class='line'>      &lt;%= detail.titleize %&gt;
+</span><span class='line'>    &lt;/option&gt;
+</span><span class='line'>  &lt;% end %&gt;
+</span><span class='line'>  &lt;/select&gt;
+</span><span class='line'>&lt;% end %&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Javascript</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery(function(){
+</span><span class='line'>  $( "#first-selectbox" ).change(function() {
+</span><span class='line'>    var detail_id = ( "#" + $( "#first-selectbox option:selected").attr('name').toLowerCase() );
+</span><span class='line'>    $( ".show").addClass("hide");
+</span><span class='line'>    $( detail_id ).removeClass("hide").addClass("show");
+</span><span class='line'>    
+</span><span class='line'>    if (detail_id === "#select-one") {
+</span><span class='line'>      $( "#no-details" ).removeClass("hide").addClass("show");
+</span><span class='line'>    }
+</span><span class='line'>  });
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Cross the Ts: Getting the Ruby and HTML Details Right</h2>
+
+<p>As you can see, the actual code is a lot more complex than the overview. This is because:</p>
+
+<ol>
+<li>I made a default selectbox for the 2nd selectbox, which requires some fandangaling to handle because it falls outside of the &ldquo;subject equals 2nd selectbox id&rdquo; pattern.</li>
+<li>I created my own methods (<code>subject.detail_list</code> and <code>Subject.list</code>) to return a list of associated subjects and details, to avoid making unnecessary queries to the database.</li>
+<li>I created a view helper <code>cssable(string)</code> to make subjects longer than one word, like &ldquo;Main Course,&rdquo; separated by dashes, like &ldquo;main-course,&rdquo; so that the value could be captured in HTML.</li>
+</ol>
+
+
+<h2>Conclusion</h2>
+
+<p>Updating selectbox selections is a straightforward concept that nonetheless requires some attention to detail to get working perfectly. My approach was to get the basic concept working (as can be found in this <a href="http://jsfiddle.net/Nct8Y/">JS Fiddle</a>), then to make it work in my actual application.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ArtsEdTechNYC... the best meetup ever?]]></title>

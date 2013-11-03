@@ -7,7 +7,7 @@
 	<meta name="author" content="Alex Au">
 
 	
-	<meta name="description" content="Oct 3rd, 2013 ArtsEdTechNYC&#8230; The Best Meetup Ever? The recent ArtsEdTech meetup is the best Meetup I&rsquo;ve attended for one reason, and one &hellip;">
+	<meta name="description" content="Nov 3rd, 2013 HTML Selectbox Updating With Javascript and Dynamic Ruby The Goal You&rsquo;re making a form with 2 selectboxes: based on the user& &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,146 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T10:13:00-05:00" data-updated="true" itemprop="datePublished">Nov 3<span>rd</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/11/03/html-selectbox-updating-with-javascript-and-dynamic-ruby/" itemprop="url">HTML Selectbox Updating With Javascript and Dynamic Ruby</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h2>The Goal</h2>
+
+<p>You&rsquo;re making a form with 2 selectboxes: based on the user&rsquo;s selection in the first box, the second box updates. A possible use is an interactive menu with a selectbox (drink, appetizer, dessert), and a second selectbox that updates (coffee, juice, tea &mdash; if you select drink).</p>
+
+<p>How do we write the HTML, Ruby, CSS, and Javascript to make it work?</p>
+
+<h2>HTML &amp; Javascript Overview</h2>
+
+<p>Use the <code>.change()</code> jQuery method as the event listener for the first selectbox. Based on the name attribute of option selected, use CSS to reveal the correct set of 2nd-selectbox options.</p>
+
+<p>I created a <code>.hide {display: none;}</code> CSS rule and applied it to all 2nd-selectbox options. For these same selectboxes, I gave them the same ID as the name attribute of the matching option of the first selectbox.</p>
+
+<p>Furthermore, I used Ruby and ERB to grab &ldquo;Subjects&rdquo; and &ldquo;Details&rdquo; from my database. In the code below, Detail belongs_to :subject, and Subject has_many :details.</p>
+
+<p>See the Javascript and HTML code below:</p>
+
+<h3>HTML</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;h3&gt;Pick your subject:&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;select id="first-selectbox"&gt;
+</span><span class='line'>  &lt;option value="" name="select-one"&gt;Select One&lt;/option&gt;
+</span><span class='line'>&lt;% Subject.list.each do |subject| %&gt;
+</span><span class='line'>  &lt;option value=&lt;%= cssable(subject) %&gt; name="&lt;%= cssable(subject) %&gt;"&gt;&lt;%= subject.titleize %&gt;&lt;/option&gt;
+</span><span class='line'>&lt;% end %&gt;
+</span><span class='line'>&lt;/select&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3&gt;Pick your detail:&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;select class="show" id="no-details"&gt;
+</span><span class='line'>  &lt;option value=""&gt;Select One&lt;/option&gt;
+</span><span class='line'>&lt;/select&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;% @subjects.each do |subject| %&gt;
+</span><span class='line'>  &lt;select class="hide" id="&lt;%= cssable(subject.title) %&gt;"&gt;
+</span><span class='line'>    &lt;option value=""&gt;Select One&lt;/option&gt;
+</span><span class='line'>  &lt;% subject.detail_list.each do |detail| %&gt;
+</span><span class='line'>    &lt;option value="&lt;%= detail %&gt;"&gt;
+</span><span class='line'>      &lt;%= detail.titleize %&gt;
+</span><span class='line'>    &lt;/option&gt;
+</span><span class='line'>  &lt;% end %&gt;
+</span><span class='line'>  &lt;/select&gt;
+</span><span class='line'>&lt;% end %&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Javascript</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jQuery(function(){
+</span><span class='line'>  $( "#first-selectbox" ).change(function() {
+</span><span class='line'>    var detail_id = ( "#" + $( "#first-selectbox option:selected").attr('name').toLowerCase() );
+</span><span class='line'>    $( ".show").addClass("hide");
+</span><span class='line'>    $( detail_id ).removeClass("hide").addClass("show");
+</span><span class='line'>    
+</span><span class='line'>    if (detail_id === "#select-one") {
+</span><span class='line'>      $( "#no-details" ).removeClass("hide").addClass("show");
+</span><span class='line'>    }
+</span><span class='line'>  });
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Cross the Ts: Getting the Ruby and HTML Details Right</h2>
+
+<p>As you can see, the actual code is a lot more complex than the overview. This is because:</p>
+
+<ol>
+<li>I made a default selectbox for the 2nd selectbox, which requires some fandangaling to handle because it falls outside of the &ldquo;subject equals 2nd selectbox id&rdquo; pattern.</li>
+<li>I created my own methods (<code>subject.detail_list</code> and <code>Subject.list</code>) to return a list of associated subjects and details, to avoid making unnecessary queries to the database.</li>
+<li>I created a view helper <code>cssable(string)</code> to make subjects longer than one word, like &ldquo;Main Course,&rdquo; separated by dashes, like &ldquo;main-course,&rdquo; so that the value could be captured in HTML.</li>
+</ol>
+
+
+<h2>Conclusion</h2>
+
+<p>Updating selectbox selections is a straightforward concept that nonetheless requires some attention to detail to get working perfectly. My approach was to get the basic concept working (as can be found in this <a href="http://jsfiddle.net/Nct8Y/">JS Fiddle</a>), then to make it work in my actual application.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -1127,57 +1267,6 @@ Similarly, if there was another input, <code>&lt;input name="arrival_date"&gt;</
 <p>For Seth Godin, this means writing a blog post every morning that may fail, going to an intimate talk with no notes, and taking a hiatus from writing books to building projects &ndash; a task outside his comfort zone. Every piece of advice Seth issues is derived from real-life insight from implementing his own suggestions in frightful situations. Seth matters to others because he takes on the task of facing the resistance, inviting it to tea, and bringing back a nugget of wisdom to guide others who dare to take a trail-blazing path.</p>
 
 <p>Thanks Seth for the great talk. It was relevant and full of empathy.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-16T22:49:00-04:00" data-updated="true" itemprop="datePublished">Jun 16<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/06/16/what-should-i-learn-when-becoming-a-web-developer/" itemprop="url">What Should I Learn When Becoming a Web Developer?</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>How will you learn to program? What you learn first can determine your future as a programmer. As a novice, I can only speak to my experience. Here was my thinking process:</p>
-
-<p>I’d like to build useful and interesting projects as quickly as possible, while also making a living from my ability to program. After learning on my own and making steady but not lightning-fast progress, I looked for an immersive schooling program that would speed up my learning. The school I chose, the Flatiron School, teaches students in 4 months to be capable web programmers. Their curriculum prepares students to be Ruby on Rails web developers, with all students finding employment after graduation. This is exactly what I was looking for &ndash; fast and effective.</p>
-
-<p>So what do you learn in their curriculum?</p>
-
-<ol>
-<li><p>Basic Vocabulary &ndash; a web developer works both in visual space and data manipulation. Flatiron School’s pre-work begins with a quick grounding in how websites work and the concepts professionals use to design them.</p></li>
-<li><p>HTML &ndash; Just as Twitter uses tags to describe content, “Hypertext Markup Language” is used to describe the content of the Web. For example, a paragraph of text would be surrounded by a paragraph tag, and an image would be surrounded by an image tag. Using HTML makes it easy for search engines to figure out what a website is about, and it also helps web developers adjust the layout of a website.</p></li>
-<li><p>CSS &ndash; “Cascading Style Sheets” work with HTML to adjust the visual design of a website. For example, CSS can tell all paragraphs to appear in 14 point Helvetica font and to start as gray, but to fade to black when a user’s mouse hovers over the text. CSS makes it easier to visually design a site because it separates content from style, allowing for web developers to think about these two topics separately. Furthermore,  web developers can overhaul the style of a site very quickly using CSS &ndash; rather than changing the style of every paragraph in a large website containing thousands of articles, a web developer can change just one document that will then apply that style to all paragraphs of every article.</p></li>
-<li><p>Javascript &ndash; This is the programming language of the internet. It is used to listen for events and change the display on a website based on those events. Javascript is a programming language because developers can use it to instruct computers to make new methods that do entirely new things. By contrast, HTML and CSS are not programming languages because developers describe content with a set vocabulary, which web browsers read and apply a set of fixed methods to achieve their effects.</p></li>
-<li><p>Ruby &ndash; This is the programming language of Ruby on Rails. It is known for being intuitive to write and, when combined with Rails &ndash; to be a fast and effective way to make websites compared with other languages.</p></li>
-<li><p>Rails &ndash; This is an open source web application framework and server, which means that it is a standardized way to create a website. A website has a lot of files that interact with each other, and Rails is a popular way of having those files interact. It’s popular because many of the decisions for how website files interact is defaulted according to an easily-deciphered logic, allowing for developers to focus their mental efforts on adding value.</p></li>
-<li><p>The Command Line &ndash; computers can receive instructions through “the command line.” This is the standard way for programmers to interact with computers because many commands can only be issued through the command line.</p></li>
-<li><p>SQL &ndash; “Structured Query Language” is a popular database language. Databases store data in an easily retrievable format. When a website like Facebook displays the status updates of all your friends, it has to query that data before displaying it. Whereas it would take you or me dozens of hours to find that information in a stack of papers, databases are designed to make that process quick and accurate.</p></li>
-<li><p>Testing &ndash; while not technically requiring its own programming language, testing does use a distinct vocabulary and methodology. Because a website has a lot of moving parts, programmers create tests that let them identify which part suddenly breaks down with any change in the code.</p></li>
-<li><p>Best Practices &ndash; Just as in any discipline, there are some problems that have been “figured out.” These best practices are important to know because they are the best way to solve frequently occurring problems.</p></li>
-</ol>
-
-
-<p>I dabbled in programming for a year before deciding to become a programmer. The most important insight for me during this time was figuring out when to take programming seriously. If you want to find out if you’re interested, then dabble by all means. However, if you’re aiming to be capable as a programmer, then the sooner you get serious, the better &ndash; you’ve got a lot of work to do.</p>
 
 		
 		

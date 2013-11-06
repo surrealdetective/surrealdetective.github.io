@@ -4,7 +4,7 @@
   <title><![CDATA[Surreal Detective]]></title>
   <link href="http://surrealdetective.github.io/atom.xml" rel="self"/>
   <link href="http://surrealdetective.github.io/"/>
-  <updated>2013-11-03T11:02:52-05:00</updated>
+  <updated>2013-11-06T09:49:10-05:00</updated>
   <id>http://surrealdetective.github.io/</id>
   <author>
     <name><![CDATA[Alex Au]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Parse Excel Files with the Ruby Gem Roo]]></title>
+    <link href="http://surrealdetective.github.io/blog/2013/11/06/parse-excel-files-with-the-ruby-gem-roo/"/>
+    <updated>2013-11-06T08:43:00-05:00</updated>
+    <id>http://surrealdetective.github.io/blog/2013/11/06/parse-excel-files-with-the-ruby-gem-roo</id>
+    <content type="html"><![CDATA[<h2>The Logic of Parsing Excel Files</h2>
+
+<p>Advertisers put their content in the medium that their marketing targets use i.e. advertise on Facebook if your customers use Facebook. However, when I act as the medium between knowledge experts and a web app that delivers that expertise to users, I want those experts to collborate with me using a platform they already know. In the case of inputing data, I ask them to use an Excel sheet, and I use the Ruby gem &ldquo;Roo&rdquo; to get that info into a database.</p>
+
+<h2>Ruby Basics of Roo</h2>
+
+<p>Using Roo is simple:</p>
+
+<ol>
+<li>gem install roo</li>
+<li>require &lsquo;roo&rsquo;</li>
+<li>s = Roo::Excelx.new(&ldquo;myspreadsheet.xlsx&rdquo;)</li>
+<li>s.default_sheet = s.sheets.first</li>
+<li>define your attributes by column</li>
+<li>iterate through each row of your excel sheet, with a starting and ending row</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">start_row</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span class='line'><span class="n">end_row</span>   <span class="o">=</span> <span class="mi">78</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="n">start_row</span><span class="o">.</span><span class="n">.end_row</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">attr_one</span>   <span class="o">=</span> <span class="n">oo</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">attr_two</span>   <span class="o">=</span> <span class="n">oo</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">attr_three</span> <span class="o">=</span> <span class="n">oo</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">attr_four</span>  <span class="o">=</span> <span class="n">oo</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">attr_five</span>  <span class="o">=</span> <span class="n">oo</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">object</span>     <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:attr_one</span> <span class="o">=&gt;</span> <span class="n">attr_one</span><span class="p">,</span> <span class="ss">:attr_two</span> <span class="o">=&gt;</span> <span class="ss">:attr_two</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">detail</span>     <span class="o">=</span> <span class="n">object</span><span class="o">.</span><span class="n">details</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:attr_three</span> <span class="o">=&gt;</span> <span class="n">attr_three</span><span class="p">,</span> <span class="ss">:attr_four</span> <span class="o">=&gt;</span> <span class="n">attr_four</span><span class="p">,</span> <span class="ss">:attr_five</span> <span class="o">=&gt;</span> <span class="n">attr_five</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Other Ways of Using Roo</h2>
+
+<p>You can create a checklist system where Excel rows are filled with an &ldquo;x&rdquo; if an entry meets a column criteria. For example, if you&rsquo;re tracking how many continents you&rsquo;ve visited, you can put an &ldquo;x&rdquo; under each continent visited (such that columns B-H are Europe, Arica, etc.). You can also define your own ruby methods to transform the excel data as needed.</p>
+
+<p>Roo is a simple but powerful tool for collborating with knowledge experts to build a powerful web app. Find more information at its <a href="https://github.com/Empact/roo">Github</a> to parse things like CSV and OpenOffice.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML Selectbox Updating with Javascript and Dynamic Ruby]]></title>
